@@ -1,0 +1,25 @@
+{
+  "name": "iptools-jquery-anchornav",
+  "description": "jQuery anchor navigation",
+  "main": "src/iptools-jquery-anhornav.js",
+  "version": "0.0.1",
+  "license": "GPL-3.0",
+  "ignore": [
+    ".git*",
+    "test/",
+    "**/.*",
+    "Gruntfile.js"
+  ],
+  "dependencies": {
+    "jquery": "~1.11.3"
+  },
+  "devDependencies": {
+  },
+  "authors": [
+    "Interactive Pioneers GmbH <hello@interactive-pioneers.de>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/interactive-pioneers/iptools-jquery-anhornav.git"
+  }
+}

@@ -1,0 +1,19 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Mocha Spec Runner</title>
+  <link rel="stylesheet" href="../src/iptools-jquery-anchornav.css">
+</head>
+<body>
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="lib/mocha/mocha.js"></script>
+  <script>mocha.setup('bdd')</script>
+  <!-- assertion framework -->
+  <script src="lib/chai.js"></script>
+  <script>var expect = chai.expect</script>
+  <script src="spec/test.js"></script>
+  <script src="../src/iptools-jquery-anchornav.js"></script>
+  <script>mocha.run()</script>
+</body>
+</html>
