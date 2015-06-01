@@ -1,12 +1,12 @@
 /**
- * jQuery AnchorNavigation
+ * jQuery IPTAnchorNavigation
  */
 ;
-(function ($, window, document) {
+(function($, window, document) {
 
   'use strict';
 
-  var pluginName = 'AnchorNavigation';
+  var pluginName = 'iptoolsAnchorNavigation';
   var defaults = {
     animEasing: 'swing',
     animDuration: 600,
@@ -17,7 +17,7 @@
   var navItem = '.anchor__nav__list__item__link';
   var navTop = '.anchor__nav__top';
 
-  function AnchorNavigation(element, options) {
+  function IPTAnchorNavigation(element, options) {
 
     var self = this;
 
@@ -40,9 +40,9 @@
 
   }
 
-  AnchorNavigation.prototype = {
+  IPTAnchorNavigation.prototype = {
 
-    go: function (event) {
+    go: function(event) {
 
       var easing = this.settings.animEasing;
       var duration = this.settings.animDuration;
@@ -72,7 +72,7 @@
       scrollTo(event.target.hash, event.target.hash);
     },
 
-    onScroll: function () {
+    onScroll: function() {
       var windowPos = $(window).scrollTop();
       var windowHeight = $(window).height();
       var docHeight = $(document).height();
@@ -83,13 +83,13 @@
         var divHeight = $(this.hash).height();
 
         if (windowPos >= divPos && windowPos < (divPos + divHeight)) {
-          $(this).addClass("active");
+          $(this).addClass('active');
         } else {
-          $(this).removeClass("active");
+          $(this).removeClass('active');
         }
 
-        if(windowPos + windowHeight == docHeight) {
-          if (!$(this[i]).hasClass("active")) {
+        if (windowPos + windowHeight == docHeight) {
+          if (!$(this[i]).hasClass('active')) {
             $(navItem).removeClass('active');
             $($(navItem)[i]).addClass('active')
           }
@@ -97,7 +97,7 @@
       }
 
       function navToggle() {
-        if(windowPos >= $($(navItem)[0].hash).offset().top - gapY) {
+        if (windowPos >= $($(navItem)[0].hash).offset().top - gapY) {
           $(nav).addClass('active');
         } else {
           $(nav).removeClass('active');
@@ -109,10 +109,11 @@
     }
   };
 
-  $.fn[ pluginName ] = function (options) {
-    return this.each(function () {
+  $.fn[pluginName] = function(options) {
+    return this.each(function() {
       if (!$.data(this, 'plugin_' + pluginName)) {
-        $.data(this, 'plugin_' + pluginName, new AnchorNavigation(this, options));
+        $.data(this, 'plugin_' + pluginName,
+          new IPTAnchorNavigation(this, options));
       }
     });
   };

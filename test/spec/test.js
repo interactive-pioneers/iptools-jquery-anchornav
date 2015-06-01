@@ -1,7 +1,7 @@
 'use strict';
 /* jshint undef: false */
 (function() {
-  describe('MlhMenu', function() {
+  describe('IPTAnchorNavigation', function() {
 
     var config = {
       title: 'IPTAnchorNavigation'
@@ -12,7 +12,7 @@
     describe('init', function() {
 
       beforeEach(function() {
-        menu = $('.header__nav').IPTAnchorNavigation(config);
+        menu = $('.anchor__nav').iptoolsAnchorNavigation(config);
       });
 
       it('expected to construct object', function() {
