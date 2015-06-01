@@ -6,7 +6,7 @@
 
   'use strict';
 
-  var pluginName = 'iptoolsAnchorNavigation';
+  var pluginName = 'iptAnchorNavigation';
   var defaults = {
     animEasing: 'swing',
     animDuration: 600,
@@ -26,17 +26,11 @@
     this._defaults = defaults;
     this._name = pluginName;
 
-    this.element.find(navItem).on('click', function(event) {
-      self.go(event);
-    });
+    this.element.find(navItem).on('click', this, self.go);
 
-    this.element.find(navTop).on('click', function(event) {
-      self.go(event);
-    });
+    this.element.find(navTop).on('click', this, self.go);
 
-    $(window).on('scroll', function() {
-      self.onScroll();
-    });
+    $(window).on('scroll', this, self.onScroll);
 
   }
 
@@ -44,49 +38,38 @@
 
     go: function(event) {
 
-      var easing = this.settings.animEasing;
-      var duration = this.settings.animDuration;
-      var gapY = this.settings.gapY;
+      var self = event.data;
 
-      function scrollTo(x, y, options) {
-        options = $.extend({}, {
-          gap: {
-            x: 0,
-            y: gapY
-          },
-          animation: {
-            easing: easing,
-            duration: duration,
-            complete: $.noop,
-            step: $.noop
-          }
-        }, options);
+      var animation = {
+        easing: self.settings.animEasing,
+        duration: self.settings.animDuration
+      }
+      var gapY = self.settings.gapY;
 
+      function scrollTo(y) {
         $('html, body').stop().animate({
-          scrollLeft: !isNaN(Number(x)) ? x : $(y).offset().left + options.gap.x,
-          scrollTop: !isNaN(Number(y)) ? y : $(y).offset().top - options.gap.y
-        }, options.animation);
+          scrollTop: !isNaN(Number(y)) ? y : $(y).offset().top - gapY
+        }, animation);
       }
 
       event.preventDefault();
-      scrollTo(event.target.hash, event.target.hash);
+      scrollTo(event.target.hash);
     },
 
-    onScroll: function() {
+    onScroll: function(event) {
+
+      var self = event.data;
       var windowPos = $(window).scrollTop();
       var windowHeight = $(window).height();
       var docHeight = $(document).height();
-      var gapY = this.settings.gapY;
+      var gapY = self.settings.gapY;
 
       function highlight (i) {
         var divPos = $(this.hash).offset().top - gapY;
         var divHeight = $(this.hash).height();
+        var active = windowPos >= divPos && windowPos < (divPos + divHeight);
 
-        if (windowPos >= divPos && windowPos < (divPos + divHeight)) {
-          $(this).addClass('active');
-        } else {
-          $(this).removeClass('active');
-        }
+        $(this).toggleClass('active', active);
 
         if (windowPos + windowHeight == docHeight) {
           if (!$(this[i]).hasClass('active')) {
@@ -97,11 +80,8 @@
       }
 
       function navToggle() {
-        if (windowPos >= $($(navItem)[0].hash).offset().top - gapY) {
-          $(nav).addClass('active');
-        } else {
-          $(nav).removeClass('active');
-        }
+        var active = windowPos >= $($(navItem)[0].hash).offset().top - gapY;
+        $(nav).toggleClass('active', active);
       }
 
       navToggle();

@@ -12,7 +12,7 @@
     describe('init', function() {
 
       beforeEach(function() {
-        menu = $('.anchor__nav').iptoolsAnchorNavigation(config);
+        menu = $('.anchor__nav').iptAnchorNavigation(config);
       });
 
       it('expected to construct object', function() {
