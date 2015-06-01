@@ -1,7 +1,6 @@
 /**
  * jQuery IPTAnchorNavigation
  */
-;
 (function($, window, document) {
 
   'use strict';
@@ -43,7 +42,7 @@
       var animation = {
         easing: self.settings.animEasing,
         duration: self.settings.animDuration
-      }
+      };
       var gapY = self.settings.gapY;
 
       function scrollTo(y) {
@@ -71,10 +70,10 @@
 
         $(this).toggleClass('active', active);
 
-        if (windowPos + windowHeight == docHeight) {
+        if (windowPos + windowHeight === docHeight) {
           if (!$(this[i]).hasClass('active')) {
             $(navItem).removeClass('active');
-            $($(navItem)[i]).addClass('active')
+            $($(navItem)[i]).addClass('active');
           }
         }
       }
