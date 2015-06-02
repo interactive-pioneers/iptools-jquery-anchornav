@@ -4,7 +4,8 @@
   describe('IPTAnchorNavigation', function() {
 
     var config = {
-      title: 'IPTAnchorNavigation'
+      title: 'IPTAnchorNavigation',
+      gapY: 0
     };
 
     var menu = null;
