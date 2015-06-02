@@ -20,6 +20,18 @@
         return expect(menu).to.be.an.object;
       });
 
+      it('expected gapY setting to be of numeric type', function() {
+        return expect(menu.data('plugin_iptAnchorNavigation').settings.gapY).to.be.a('number');
+      });
+
+      it('expected title setting to be of string type', function() {
+        return expect(menu.data('plugin_iptAnchorNavigation').settings.title).to.be.a('string');
+      });
+
+      it('expected to set title to ' + config.title, function() {
+        return expect(menu.data('plugin_iptAnchorNavigation').settings.title).to.equal(config.title);
+      });
+
     });
 
   });
