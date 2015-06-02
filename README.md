@@ -4,7 +4,8 @@ jQuery anchor navigation.
 
 ## Features
 
-_Work in progress_.
+- Shows or hides the navigation bar depending on the scroll position. 
+- Scrolls smoothly to the targets when the anchor has been clicked.
 
 ## Requirements
 
@@ -12,7 +13,49 @@ _Work in progress_.
 
 ## Example
 
-_Work in progress_.
+```html
+<div>
+  <nav class='anchor__nav anchor__nav--dark'>
+    <ul class='anchor__nav__list'><li class='anchor__nav__list__item'>
+        <a class='anchor__nav__list__item__link' href='#a'>Übersicht</a>
+      </li><li class='anchor__nav__list__item'>
+        <a class='anchor__nav__list__item__link' href='#b'>Auswahl</a>
+      </li><li class='anchor__nav__list__item'>
+        <a class='anchor__nav__list__item__link' href='#c'>Top-Produkte</a>
+      </li><li class='anchor__nav__list__item'>
+        <a class='anchor__nav__list__item__link' href='#d'>Accessoires &amp; Ersatzteile</a>
+      </li><li class='anchor__nav__list__item'>
+        <a class='anchor__nav__list__item__link' href='#e'>Kontakt</a>
+      </li><li class='anchor__nav__list__item'>
+        <a class='anchor__nav__list__item__link' href='#f'>Magalog</a>
+      </li><li class='anchor__nav__list__item'>
+        <a class='anchor__nav__list__item__link' href='#g'>Tools</a>
+      </li>
+    </ul>
+    <a class='anchor__nav__top' href='#'>Back to Top</a>
+  </nav>
+
+  <section id="a" style="height: 750px; background: rgba(0,0,0,.1);"></section>
+  <section id="b" style="height: 750px; background: rgba(0,0,0,.2);"></section>
+  <section id="c" style="height: 750px; background: rgba(0,0,0,.3);"></section>
+  <section id="d" style="height: 750px; background: rgba(0,0,0,.4);"></section>
+  <section id="e" style="height: 750px; background: rgba(0,0,0,.5);"></section>
+  <section id="f" style="height: 750px; background: rgba(0,0,0,.6);"></section>
+  <section id="g" style="height: 750px; background: rgba(0,0,0,.7);"></section>
+
+</div>
+
+<script src="scripts/iptools-jquery-anchornav.js"></script>
+<script type="text/javascript">
+   $(document).ready(function() {
+      $(".anchor__nav").iptAnchorNavigation({
+        animEasing: 'swing',
+        animDuration: 600,
+        gapY: 60
+      });
+   });
+</script>
+```
 
 ## Contributions
 
