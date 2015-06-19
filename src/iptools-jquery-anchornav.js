@@ -35,7 +35,20 @@
       $(window).scrollTop($(window).scrollTop() + 1);
       $(window).scrollTop($(window).scrollTop() - 1);
 
-      
+      this.set();
+    },
+    set: function() {
+      var navWidth = $(nav).width();
+      var listWidth = 0;
+
+      $(navItem).each(function() {
+        listWidth += $(this).outerWidth();
+      });
+
+      if(listWidth >= navWidth) {
+        $(nav).addClass('scrollable')
+      }
+
     },
     addEvents: function() {
       var self = this;
