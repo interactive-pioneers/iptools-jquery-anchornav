@@ -9,7 +9,8 @@
   var defaults = {
     animEasing: 'swing',
     animDuration: 600,
-    gapY: 60
+    gapY: 60,
+    horisontalScrollSpeed: 15
   };
 
   var nav = '.anchor__nav';
@@ -105,11 +106,11 @@
       }
 
       rArr.on('mousedown', function() {
-        animate = setInterval(scrollLeft, 30);
+        animate = setInterval(scrollLeft, self.settings.horisontalScrollSpeed);
       });
 
       lArr.on('mousedown', function() {
-        animate = setInterval(scrollRight, 30);
+        animate = setInterval(scrollRight, self.settings.horisontalScrollSpeed);
       });
 
       rArr.on('mouseup', function() {
