@@ -16,13 +16,12 @@
   opacity: 1;
 }
 
-.anchor__nav__list {
+.anchor__nav__list {  
   margin: 0;
   padding: 0;
   list-style: none;
   text-align: center;
-  white-space: nowrap;
-  transition: transform .1s linear;
+  white-space: nowrap;  
 }
 
 .anchor__nav__list__item {
@@ -60,6 +59,9 @@
 
 
 /* Scrollable navigation */
+.scrollable .anchor__nav__list {
+  position: relative;
+}
 .scrollable:before,
 .scrollable:after { 
   content: "";
@@ -99,4 +101,9 @@
 
 .scrollable__control--right {
   right: 55px;
+}
+
+
+.section {
+  height: 800px;
 }
