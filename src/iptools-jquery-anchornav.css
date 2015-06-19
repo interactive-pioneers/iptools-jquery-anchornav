@@ -14,6 +14,8 @@
 }
 
 .anchor__nav__list {
+  margin: 0;
+  padding: 0;
   list-style: none;
   text-align: center;
 }
@@ -28,5 +30,5 @@
 
 .anchor__nav__list__item {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 20px;
 }

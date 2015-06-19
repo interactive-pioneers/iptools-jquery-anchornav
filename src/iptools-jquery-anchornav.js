@@ -25,19 +25,26 @@
     this._defaults = defaults;
     this._name = pluginName;
 
-    this.element.find(navItem).on('click', this, self.go);
-
-    this.element.find(navTop).on('click', this, self.go);
-
-    $(window).on('scroll', this, self.onScroll);
-
-    $(window).scrollTop($(window).scrollTop() + 1);
-    $(window).scrollTop($(window).scrollTop() - 1);
+    this.initialise();
   }
 
   IPTAnchorNavigation.prototype = {
-    go: function (event) {
+    initialise: function() {
+      this.addEvents();
 
+      $(window).scrollTop($(window).scrollTop() + 1);
+      $(window).scrollTop($(window).scrollTop() - 1);
+
+      
+    },
+    addEvents: function() {
+      var self = this;
+
+      this.element.find(navItem).on('click', this, self.go);
+      this.element.find(navTop).on('click', this, self.go);
+      $(window).on('scroll', this, self.onScroll);
+    },
+    go: function (event) {
       var self = event.data;
 
       var animation = {
@@ -56,7 +63,6 @@
       scrollTo(event.target.hash);
     },
     onScroll: function (event) {
-
       var self = event.data;
       var windowPos = $(window).scrollTop();
       var windowHeight = $(window).height();
