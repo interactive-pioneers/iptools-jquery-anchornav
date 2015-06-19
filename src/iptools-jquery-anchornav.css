@@ -22,7 +22,11 @@
   display: inline-block;
 }
 
+.anchor__nav__list__item__link.active {
+  color: red;
+}
+
 .anchor__nav__list__item {
   display: inline-block;
-  padding: 10px;
+  padding: 10px 20px;
 }

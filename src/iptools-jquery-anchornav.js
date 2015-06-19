@@ -1,7 +1,7 @@
 /**
  * jQuery IPTAnchorNavigation
  */
-(function($, window, document) {
+(function ($, window, document) {
 
   'use strict';
 
@@ -31,11 +31,12 @@
 
     $(window).on('scroll', this, self.onScroll);
 
+    $(window).scrollTop($(window).scrollTop() + 1);
+    $(window).scrollTop($(window).scrollTop() - 1);
   }
 
   IPTAnchorNavigation.prototype = {
-
-    go: function(event) {
+    go: function (event) {
 
       var self = event.data;
 
@@ -54,8 +55,7 @@
       event.preventDefault();
       scrollTo(event.target.hash);
     },
-
-    onScroll: function(event) {
+    onScroll: function (event) {
 
       var self = event.data;
       var windowPos = $(window).scrollTop();
@@ -63,7 +63,7 @@
       var docHeight = $(document).height();
       var gapY = self.settings.gapY;
 
-      function highlight (i) {
+      function highlight(i) {
         var divPos = $(this.hash).offset().top - gapY;
         var divHeight = $(this.hash).height();
         var active = windowPos >= divPos && windowPos < (divPos + divHeight);
@@ -88,11 +88,11 @@
     }
   };
 
-  $.fn[pluginName] = function(options) {
-    return this.each(function() {
+  $.fn[pluginName] = function (options) {
+    return this.each(function () {
       if (!$.data(this, 'plugin_' + pluginName)) {
         $.data(this, 'plugin_' + pluginName,
-          new IPTAnchorNavigation(this, options));
+                new IPTAnchorNavigation(this, options));
       }
     });
   };
