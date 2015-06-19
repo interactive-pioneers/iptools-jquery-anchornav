@@ -16,31 +16,13 @@
   opacity: 1;
 }
 
-.anchor__nav.scrollable:before,
-.anchor__nav.scrollable:after { 
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100px;
-  
-  background: white;
-}
-
-.anchor__nav.scrollable:before {
-  left: 0;
-}
-
-.anchor__nav.scrollable:after {
-  right: 0;
-}
-
 .anchor__nav__list {
   margin: 0;
   padding: 0;
   list-style: none;
   text-align: center;
   white-space: nowrap;
+  transition: transform .1s linear;
 }
 
 .anchor__nav__list__item {
@@ -58,7 +40,7 @@
 
 .anchor__nav__top {
   position: absolute;
-  left: 50px;
+  left: 40px;
   top: 20px;
   
   text-indent: -9999px;
@@ -73,4 +55,48 @@
   
   text-indent: 0;
   font-size: 24px;
+}
+
+
+
+/* Scrollable navigation */
+.scrollable:before,
+.scrollable:after { 
+  content: "";
+  position: absolute;
+  z-index: 1;
+  
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  
+  background: white;
+}
+
+.scrollable:before {
+  left: 0;
+}
+
+.scrollable:after {
+  right: 0;
+}
+
+.scrollable__control {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  bottom: 0;
+  
+  width: 40px;
+  padding: 20px 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+.scrollable__control--left {  
+  left: 55px;
+}
+
+.scrollable__control--right {
+  right: 55px;
 }
