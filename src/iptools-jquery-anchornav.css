@@ -4,7 +4,7 @@
   top: 0;
   left: 0;
   right: 0;
-  
+
   padding: 0 100px;
 
   opacity: 0;
@@ -30,7 +30,14 @@
 
 .anchor__nav__list__item__link {
   display: inline-block;
-  padding: 20px;
+  padding: 20px;  
+}
+
+@media only screen and (max-width: 860px) {
+  .anchor__nav__list__item__link {
+    padding: 15px; 
+    font-size: 12px;
+  }
 }
 
 .anchor__nav__list__item__link.active {
@@ -41,17 +48,17 @@
   position: absolute;
   left: 40px;
   top: 20px;
-  
+
   text-indent: -9999px;
 }
 
 .anchor__nav__top:before {  
   position: absolute;
   z-index: 10;
-  
+
   content: "^";
   display: block;
-  
+
   text-indent: 0;
   font-size: 24px;
 }
@@ -63,15 +70,15 @@
   position: relative;
 }
 .scrollable:before,
-.scrollable:after { 
-  content: "";
+.scrollable:after {  
   position: absolute;
   z-index: 1;
-  
   top: 0;
   bottom: 0;
+
+  content: "";
   width: 100px;
-  
+
   background: white;
 }
 
@@ -88,7 +95,7 @@
   z-index: 10;
   top: 0;
   bottom: 0;
-  
+
   width: 40px;
   padding: 20px 0;
   text-align: center;
@@ -105,5 +112,11 @@
 
 
 .section {
-  height: 800px;
+  height: 800px;  
+}
+
+@media only screen and (max-width: 860px) {
+  .section {
+    height: 1200px;
+  }
 }

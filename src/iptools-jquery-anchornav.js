@@ -33,25 +33,21 @@
   IPTAnchorNavigation.prototype = {
     initialise: function() {
       this.addEvents();
+      this.getDimensions();
+
+      if(this.listWidth >= this.navWidth) {
+        this.addScroller();
+      }
 
       $(window).scrollTop($(window).scrollTop() + 1);
       $(window).scrollTop($(window).scrollTop() - 1);
-
-      this.set();
     },
-    set: function() {
+    getDimensions: function() {
       var self = this;
-      this.getDimensions();
-
       this.listWidth = 0;
       this.element.find(navItem).each(function() {
         self.listWidth += $(this).outerWidth();
       });
-      if(this.listWidth >= this.navWidth) {
-        this.addScroller();
-      }
-    },
-    getDimensions: function() {
       this.windowHeight = $(window).height();
       this.docHeight = $(document).height();
       this.navWidth = this.element.width();
@@ -73,11 +69,6 @@
           self.removeScroller();
         }
       }
-    },
-    removeScroller: function() {
-      this.element.removeClass('scrollable');
-      this.element.find('.scrollable__control').remove();
-      this.element.find(navList).css({transform: 'translateX(0)'});
     },
     addScroller: function() {
       var self = this;
@@ -114,6 +105,11 @@
       lArr.on('mouseup', function() {
         clearInterval(animate);
       });
+    },
+    removeScroller: function() {
+      this.element.removeClass('scrollable');
+      this.element.find('.scrollable__control').remove();
+      this.element.find(navList).css({transform: 'translateX(0)'});
     },
     addEvents: function() {
       var self = this;
@@ -168,7 +164,6 @@
         if(!self.element.hasClass('scrollable')) {
           return;
         }
-
         var ratio = self.windowPos / (self.docHeight - self.windowHeight);
         self.posX = (self.navWidth - self.listWidth) * ratio;
         self.element.find(navList).css({transform: 'translateX(' + self.posX + 'px)'});
