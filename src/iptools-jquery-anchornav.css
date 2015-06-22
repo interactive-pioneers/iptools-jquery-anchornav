@@ -68,6 +68,9 @@
 /* Scrollable navigation */
 .scrollable .anchor__nav__list {
   position: relative;
+  /*
+  transition: transform 1s;
+  -webkit-transition: -webkit-transform .15s linear; */
 }
 .scrollable:before,
 .scrollable:after {  

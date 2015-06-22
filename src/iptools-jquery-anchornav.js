@@ -90,19 +90,19 @@
         $(window).scrollTop(self.windowPos - self.docHeight * self.settings.scrollSpeed * 0.00001 );
       }
 
-      rArr.on('mousedown', function() {
+      rArr.on('mousedown touchstart', function() {
         animate = setInterval(scrollLeft, 20);
       });
 
-      lArr.on('mousedown', function() {
+      lArr.on('mousedown touchstart', function() {
         animate = setInterval(scrollRight, 20);
       });
 
-      rArr.on('mouseup', function() {
+      rArr.on('mouseup touchend', function() {
         clearInterval(animate);
       });
 
-      lArr.on('mouseup', function() {
+      lArr.on('mouseup touchend', function() {
         clearInterval(animate);
       });
     },
