@@ -134,6 +134,9 @@
             $(self.element.find(navItem)[i]).addClass('active');
           }
         }
+        if(active) {
+          self.index = i;
+        }
       }
 
       function navToggle() {
@@ -145,7 +148,6 @@
           self.posX = (self.navWidth - self.listWidth) * ratio;
           self.element.find(navList).css({transform: 'translateX(' + self.posX + 'px)'});
 
-          self.index = self.element.find(navItem).index(self.element.find(navItem + '.active'));
           var lActive = self.index > 0;
           var rActive = self.index < self.element.find(navItem).length - 1;
 
