@@ -12,6 +12,12 @@
   background: white;
 }
 
+@media only screen and (max-width: 860px) {
+  .anchor__nav { 
+    padding: 0 50px;
+  }
+}
+
 .anchor__nav.active { 
   opacity: 1;
 }
@@ -52,6 +58,13 @@
   text-indent: -9999px;
 }
 
+@media only screen and (max-width: 860px) {
+  .anchor__nav__top {
+    left: 5px;
+    top: 15px;
+  }
+}
+
 .anchor__nav__top:before {  
   position: absolute;
   z-index: 10;
@@ -63,15 +76,19 @@
   font-size: 24px;
 }
 
+@media only screen and (max-width: 860px) {
+  .anchor__nav__top:before {  
+    font-size: 21px;
+  }
+}
+
 
 
 /* Scrollable navigation */
-.scrollable .anchor__nav__list {
-  position: relative;
-  /*
-  transition: transform 1s;
-  -webkit-transition: -webkit-transform .15s linear; */
+.scrollable {
+  overflow: hidden;
 }
+
 .scrollable:before,
 .scrollable:after {  
   position: absolute;
@@ -85,12 +102,21 @@
   background: white;
 }
 
+@media only screen and (max-width: 860px) {
+  .scrollable:before,
+  .scrollable:after {  
+    width: 50px;
+  }
+}
+
 .scrollable:before {
   left: 0;
+  box-shadow: 10px 0 10px white;
 }
 
 .scrollable:after {
   right: 0;
+  box-shadow: -10px 0 10px white;
 }
 
 .scrollable__control {
@@ -103,6 +129,14 @@
   padding: 20px 0;
   text-align: center;
   cursor: pointer;
+  transition: .3s;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.scrollable__control.active {
+  visibility: visible;
+  opacity: 1;
 }
 
 .scrollable__control--left {  
@@ -113,6 +147,19 @@
   right: 55px;
 }
 
+@media only screen and (max-width: 860px) {
+  .scrollable__control {
+    padding: 14px 0;
+  }
+  .scrollable__control--left { 
+    left: 10px;
+  }
+
+  .scrollable__control--right {
+    right: 5px;
+  }
+}
+
 
 .section {
   height: 800px;  
@@ -120,6 +167,6 @@
 
 @media only screen and (max-width: 860px) {
   .section {
-    height: 1200px;
+    height: 600px;
   }
 }

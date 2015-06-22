@@ -9,8 +9,7 @@
   var defaults = {
     animEasing: 'swing',
     animDuration: 600,
-    gapY: 60,
-    scrollSpeed: 600
+    gapY: 60
   };
 
   var nav = '.anchor__nav';
@@ -31,89 +30,72 @@
   }
 
   IPTAnchorNavigation.prototype = {
-    initialise: function() {
+    initialise: function () {
       this.addEvents();
       this.getDimensions();
-
-      if(this.listWidth >= this.navWidth) {
+      if (this.listWidth >= this.navWidth) {
         this.addScroller();
       }
-
-      $(window).scrollTop($(window).scrollTop() + 1);
-      $(window).scrollTop($(window).scrollTop() - 1);
+      this.triggerScroll();
     },
-    getDimensions: function() {
+    getDimensions: function () {
       var self = this;
       this.listWidth = 0;
-      this.element.find(navItem).each(function() {
+      this.element.find(navItem).each(function () {
         self.listWidth += $(this).outerWidth();
       });
       this.windowHeight = $(window).height();
       this.docHeight = $(document).height();
       this.navWidth = this.element.width();
     },
-    onResize: function(event) {
+    onResize: function (event) {
       var self = event.data;
       self.getDimensions();
 
-      if(self.listWidth >= self.navWidth) {
-        if(!self.element.hasClass('scrollable')) {
-           self.addScroller();
+      if (self.listWidth >= self.navWidth) {
+        if (!self.element.hasClass('scrollable')) {
+          self.addScroller();
         }
-        if(self.navWidth >= self.posX + self.listWidth) {
+        if (self.navWidth >= self.posX + self.listWidth) {
           self.posX = self.navWidth - self.listWidth;
           self.element.find(navList).css({transform: 'translateX(' + self.posX + 'px)'});
         }
       } else {
-        if(self.element.hasClass('scrollable')) {
+        if (self.element.hasClass('scrollable')) {
           self.removeScroller();
         }
       }
+      self.triggerScroll();
     },
-    addScroller: function() {
+    addScroller: function () {
       var self = this;
-      self.posX = 0;
-      var animate;
 
       this.element.addClass('scrollable');
 
-      var lArr = $('<a/>').addClass('scrollable__control scrollable__control--left').text('<');
-      var rArr = $('<a/>').addClass('scrollable__control scrollable__control--right').text('>');
+      self.lArr = $('<a/>').addClass('scrollable__control scrollable__control--left').text('<');
+      self.rArr = $('<a/>').addClass('scrollable__control scrollable__control--right').text('>');
 
-      this.element.append(lArr, rArr);
+      this.element.append(self.lArr, self.rArr);
 
-      function scrollLeft() {
-        $(window).scrollTop(self.windowPos + self.docHeight * self.settings.scrollSpeed * 0.00001 );
-      }
-
-      function scrollRight() {
-        $(window).scrollTop(self.windowPos - self.docHeight * self.settings.scrollSpeed * 0.00001 );
-      }
-
-      rArr.on('mousedown touchstart', function() {
-        animate = setInterval(scrollLeft, 20);
+      self.rArr.on('click', function () {
+        $(self.element.find(navItem)[self.index + 1]).trigger('click');
       });
 
-      lArr.on('mousedown touchstart', function() {
-        animate = setInterval(scrollRight, 20);
-      });
-
-      rArr.on('mouseup touchend', function() {
-        clearInterval(animate);
-      });
-
-      lArr.on('mouseup touchend', function() {
-        clearInterval(animate);
+      self.lArr.on('click', function () {
+        $(self.element.find(navItem)[self.index - 1]).trigger('click');
       });
     },
-    removeScroller: function() {
+    removeScroller: function () {
       this.element.removeClass('scrollable');
       this.element.find('.scrollable__control').remove();
       this.element.find(navList).css({transform: 'translateX(0)'});
     },
-    addEvents: function() {
+    triggerScroll: function() {
+      $(window).scrollTop($(window).scrollTop() + 1);
+      $(window).scrollTop($(window).scrollTop() - 1);
+    },
+    addEvents: function () {
       var self = this;
-
       this.element.find(navItem).on('click', this, self.go);
       this.element.find(navTop).on('click', this, self.go);
       $(window).on('scroll', this, self.onScroll);
@@ -121,7 +103,6 @@
     },
     go: function (event) {
       var self = event.data;
-
       var animation = {
         easing: self.settings.animEasing,
         duration: self.settings.animDuration
@@ -158,20 +139,23 @@
       function navToggle() {
         var active = self.windowPos >= $(self.element.find(navItem)[0].hash).offset().top - self.settings.gapY;
         self.element.toggleClass('active', active);
-      }
 
-      function navAlign() {
-        if(!self.element.hasClass('scrollable')) {
-          return;
+        if (self.element.hasClass('scrollable')) {
+          var ratio = self.windowPos / (self.docHeight - self.windowHeight);
+          self.posX = (self.navWidth - self.listWidth) * ratio;
+          self.element.find(navList).css({transform: 'translateX(' + self.posX + 'px)'});
+
+          self.index = self.element.find(navItem).index(self.element.find(navItem + '.active'));
+          var lActive = self.index > 0;
+          var rActive = self.index < self.element.find(navItem).length - 1;
+
+          self.lArr.toggleClass('active', lActive);
+          self.rArr.toggleClass('active', rActive);
         }
-        var ratio = self.windowPos / (self.docHeight - self.windowHeight);
-        self.posX = (self.navWidth - self.listWidth) * ratio;
-        self.element.find(navList).css({transform: 'translateX(' + self.posX + 'px)'});
       }
 
-      navToggle();
-      navAlign();
       self.element.find(navItem).each(highlight);
+      navToggle();
     }
   };
 
