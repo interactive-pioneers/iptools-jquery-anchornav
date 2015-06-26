@@ -1,12 +1,12 @@
 {
-    "requireCurlyBraces": [
-        "if",
-        "else",
-        "for",
-        "while",
-        "do",
-        "try",
-        "catch"
+  "requireCurlyBraces": [
+      "if",
+      "else",
+      "for",
+      "while",
+      "do",
+      "try",
+      "catch"
     ],
     "requireOperatorBeforeLineBreak": true,
     "requireCamelCaseOrUpperCaseIdentifiers": true,
@@ -37,12 +37,11 @@
       "catch"
     ],
     "requireSpaceBeforeBinaryOperators": [
-        "=", "+=", "-=", "*=", "/=", "%=", "<<=", ">>=", ">>>=",
-        "&=", "|=", "^=", "+=",
-
-        "+", "-", "*", "/", "%", "<<", ">>", ">>>", "&",
-        "|", "^", "&&", "||", "===", "==", ">=",
-        "<=", "<", ">", "!=", "!=="
+      "=", "+=", "-=", "*=", "/=", "%=", "<<=", ">>=", ">>>=",
+      "&=", "|=", "^=", "+=",
+      "+", "-", "*", "/", "%", "<<", ">>", ">>>", "&",
+      "|", "^", "&&", "||", "===", "==", ">=",
+      "<=", "<", ">", "!=", "!=="
     ],
     "requireSpaceAfterBinaryOperators": true,
     "requireSpacesInConditionalExpression": true,
@@ -50,10 +49,10 @@
     "requireSpacesInForStatement": true,
     "requireLineFeedAtFileEnd": true,
     "requireSpacesInFunctionExpression": {
-        "beforeOpeningCurlyBrace": true
+      "beforeOpeningCurlyBrace": true
     },
     "disallowSpacesInAnonymousFunctionExpression": {
-        "beforeOpeningRoundBrace": true
+      "beforeOpeningRoundBrace": true
     },
     "disallowSpacesInsideObjectBrackets": "all",
     "disallowSpacesInsideArrayBrackets": "all",
