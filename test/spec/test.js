@@ -16,8 +16,12 @@
         menu = $('.anchor__nav').iptAnchorNavigation(config);
       });
 
+      afterEach(function() {
+        menu.data('plugin_iptAnchorNavigation').destroy();
+      });
+
       it('expected to construct object', function() {
-        return expect(menu).to.be.an.object;
+        return expect(menu).to.be.object;
       });
 
       it('expected gapY setting to be of numeric type', function() {
