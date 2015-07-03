@@ -134,7 +134,7 @@
             $(self.element.find(navItem)[i]).addClass('active');
           }
         }
-        if(active) {
+        if (active) {
           self.index = i;
         }
       }
@@ -161,11 +161,11 @@
     }
   };
 
-  $.fn[pluginName] = function (options) {
-    return this.each(function () {
+  $.fn[pluginName] = function(options) {
+    return this.each(function() {
       if (!$.data(this, 'plugin_' + pluginName)) {
         $.data(this, 'plugin_' + pluginName,
-                new IPTAnchorNavigation(this, options));
+          new IPTAnchorNavigation(this, options));
       }
     });
   };
