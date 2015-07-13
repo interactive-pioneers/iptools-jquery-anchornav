@@ -17,7 +17,7 @@
       });
 
       afterEach(function() {
-        menu.data('plugin_iptAnchorNavigation').destroy();
+        //menu.data('plugin_iptAnchorNavigation').destroy();
       });
 
       it('expected to construct object', function() {
