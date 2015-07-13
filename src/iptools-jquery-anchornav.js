@@ -100,6 +100,11 @@
       $(window).on('scroll', this, self.onScroll);
       $(window).on('resize', this, self.onResize);
     },
+    destroy: function() {
+      this.removeScroller();
+      this.element.off('.' + pluginName);
+      this.element.removeData('plugin_' + pluginName);
+    },
     go: function(event) {
       var self = event.data;
       var animation = {
