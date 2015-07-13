@@ -1,7 +1,7 @@
 /**
  * jQuery IPTAnchorNavigation
  */
-(function ($, window, document) {
+(function($, window, document) {
 
   'use strict';
 
@@ -17,7 +17,6 @@
   var navTop = '.anchor__nav__top';
 
   function IPTAnchorNavigation(element, options) {
-
     this.element = $(element);
     this.settings = $.extend({}, defaults, options);
     this._defaults = defaults;
@@ -27,7 +26,7 @@
   }
 
   IPTAnchorNavigation.prototype = {
-    initialise: function () {
+    initialise: function() {
       this.addEvents();
       this.getDimensions();
       if (this.listWidth >= this.navWidth) {
@@ -35,17 +34,17 @@
       }
       this.triggerScroll();
     },
-    getDimensions: function () {
+    getDimensions: function() {
       var self = this;
       this.listWidth = 0;
-      this.element.find(navItem).each(function () {
+      this.element.find(navItem).each(function() {
         self.listWidth += $(this).outerWidth();
       });
       this.windowHeight = $(window).height();
       this.docHeight = $(document).height();
       this.navWidth = this.element.width();
     },
-    onResize: function (event) {
+    onResize: function(event) {
       var self = event.data;
       self.getDimensions();
 
@@ -55,7 +54,8 @@
         }
         if (self.navWidth >= self.posX + self.listWidth) {
           self.posX = self.navWidth - self.listWidth;
-          self.element.find(navList).css({transform: 'translateX(' + self.posX + 'px)'});
+          self.element.find(navList)
+            .css({transform: 'translateX(' + self.posX + 'px)'});
         }
       } else {
         if (self.element.hasClass('scrollable')) {
@@ -64,25 +64,27 @@
       }
       self.triggerScroll();
     },
-    addScroller: function () {
+    addScroller: function() {
       var self = this;
 
       this.element.addClass('scrollable');
 
-      self.lArr = $('<a/>').addClass('scrollable__control scrollable__control--left').text('<');
-      self.rArr = $('<a/>').addClass('scrollable__control scrollable__control--right').text('>');
+      self.lArr = $('<a/>')
+        .addClass('scrollable__control scrollable__control--left').text('<');
+      self.rArr = $('<a/>')
+        .addClass('scrollable__control scrollable__control--right').text('>');
 
       this.element.append(self.lArr, self.rArr);
 
-      self.rArr.on('click', function () {
+      self.rArr.on('click', function() {
         $(self.element.find(navItem)[self.index + 1]).trigger('click');
       });
 
-      self.lArr.on('click', function () {
+      self.lArr.on('click', function() {
         $(self.element.find(navItem)[self.index - 1]).trigger('click');
       });
     },
-    removeScroller: function () {
+    removeScroller: function() {
       this.element.removeClass('scrollable');
       this.element.find('.scrollable__control').remove();
       this.element.find(navList).css({transform: 'translateX(0)'});
@@ -91,14 +93,14 @@
       $(window).scrollTop($(window).scrollTop() + 1);
       $(window).scrollTop($(window).scrollTop() - 1);
     },
-    addEvents: function () {
+    addEvents: function() {
       var self = this;
       this.element.find(navItem).on('click', this, self.go);
       this.element.find(navTop).on('click', this, self.go);
       $(window).on('scroll', this, self.onScroll);
       $(window).on('resize', this, self.onResize);
     },
-    go: function (event) {
+    go: function(event) {
       var self = event.data;
       var animation = {
         easing: self.settings.animEasing,
@@ -107,21 +109,23 @@
 
       function scrollTo(y) {
         $('html, body').stop().animate({
-          scrollTop: !isNaN(Number(y)) ? y : $(y).offset().top - self.settings.gapY
+          scrollTop: !isNaN(Number(y)) ? y :
+            $(y).offset().top - self.settings.gapY
         }, animation);
       }
 
       event.preventDefault();
       scrollTo(event.target.hash);
     },
-    onScroll: function (event) {
+    onScroll: function(event) {
       var self = event.data;
       self.windowPos = $(window).scrollTop();
 
       function highlight(i) {
         var divPos = $(this.hash).offset().top - self.settings.gapY;
         var divHeight = $(this.hash).height();
-        var active = self.windowPos >= divPos && self.windowPos < (divPos + divHeight);
+        var active = self.windowPos >=
+          divPos && self.windowPos < (divPos + divHeight);
 
         $(this).toggleClass('active', active);
 
@@ -137,13 +141,15 @@
       }
 
       function navToggle() {
-        var active = self.windowPos >= $(self.element.find(navItem)[0].hash).offset().top - self.settings.gapY;
+        var active = self.windowPos >= $(self.element.find(navItem)[0].hash)
+          .offset().top - self.settings.gapY;
         self.element.toggleClass('active', active);
 
         if (self.element.hasClass('scrollable')) {
           var ratio = self.windowPos / (self.docHeight - self.windowHeight);
           self.posX = (self.navWidth - self.listWidth) * ratio;
-          self.element.find(navList).css({transform: 'translateX(' + self.posX + 'px)'});
+          self.element.find(navList)
+            .css({transform: 'translateX(' + self.posX + 'px)'});
 
           var lActive = self.index > 0;
           var rActive = self.index < self.element.find(navItem).length - 1;

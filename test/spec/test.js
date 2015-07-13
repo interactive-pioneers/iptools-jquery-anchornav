@@ -21,19 +21,24 @@
       });
 
       it('expected to construct object', function() {
-        return expect(menu).to.be.object;
+        return expect(menu)
+                .to.be.object;
       });
 
       it('expected gapY setting to be of numeric type', function() {
-        return expect(menu.data('plugin_iptAnchorNavigation').settings.gapY).to.be.a('number');
+        return expect(
+                menu.data('plugin_iptAnchorNavigation').settings.gapY)
+                .to.be.a('number');
       });
 
       it('expected title setting to be of string type', function() {
-        return expect(menu.data('plugin_iptAnchorNavigation').settings.title).to.be.a('string');
+        return expect(menu.data('plugin_iptAnchorNavigation').settings.title)
+                .to.be.a('string');
       });
 
       it('expected to set title to ' + config.title, function() {
-        return expect(menu.data('plugin_iptAnchorNavigation').settings.title).to.equal(config.title);
+        return expect(menu.data('plugin_iptAnchorNavigation').settings.title)
+                .to.equal(config.title);
       });
 
     });
