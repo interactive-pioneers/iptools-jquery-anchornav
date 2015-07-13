@@ -12,14 +12,11 @@
     gapY: 60
   };
 
-  var nav = '.anchor__nav';
   var navList = '.anchor__nav__list';
   var navItem = '.anchor__nav__list__item__link';
   var navTop = '.anchor__nav__top';
 
   function IPTAnchorNavigation(element, options) {
-
-    var self = this;
 
     this.element = $(element);
     this.settings = $.extend({}, defaults, options);
