@@ -57,6 +57,12 @@ jQuery anchor navigation.
 </script>
 ```
 
+## Options
+
+1. animEasing - time function of the animation 
+2. animDuration - animation duration
+3. gapY - the distance in pixels from the top of the browser window
+
 ## Contributions
 
 ### Bug reports, suggestions
