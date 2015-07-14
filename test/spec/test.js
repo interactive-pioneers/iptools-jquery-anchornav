@@ -16,11 +16,6 @@
         menu = $('.anchor__nav').iptAnchorNavigation(config);
       });
 
-      afterEach(function() {
-        menu = $('.anchor__nav').iptAnchorNavigation(config);
-        menu.data('plugin_iptAnchorNavigation').destroy();
-      });
-
       it('expected to construct object', function() {
         return expect(menu)
                 .to.be.object;
@@ -40,6 +35,20 @@
       it('expected to set title to ' + config.title, function() {
         return expect(menu.data('plugin_iptAnchorNavigation').settings.title)
                 .to.equal(config.title);
+      });
+
+    });
+
+    describe('destroy', function() {
+
+      afterEach(function() {
+        menu = $('.anchor__nav').iptAnchorNavigation(config);
+      });
+
+      it('expected to remove data', function() {
+        menu.data('plugin_iptAnchorNavigation').destroy();
+        return expect(menu.data('plugin_iptAnchorNavigation'))
+                .to.not.be.ok;
       });
 
     });
