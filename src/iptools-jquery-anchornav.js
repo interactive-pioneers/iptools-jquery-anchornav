@@ -9,7 +9,8 @@
   var defaults = {
     animEasing: 'swing',
     animDuration: 600,
-    gapY: 60
+    gapY: 60,
+    threshold: 10
   };
 
   var navList = '.anchor__nav__list';
@@ -115,7 +116,7 @@
       function scrollTo(y) {
         $('html, body').stop().animate({
           scrollTop: !isNaN(Number(y)) ? y :
-            $(y).offset().top - self.settings.gapY
+            $(y).offset().top - self.settings.gapY + self.settings.threshold
         }, animation);
       }
 
@@ -161,6 +162,8 @@
 
           self.lArr.toggleClass('active', lActive);
           self.rArr.toggleClass('active', rActive);
+          self.element.toggleClass('before-shadow', lActive);
+          self.element.toggleClass('after-shadow', rActive);
         }
       }
 
