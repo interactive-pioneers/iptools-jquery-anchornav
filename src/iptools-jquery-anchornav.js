@@ -10,7 +10,8 @@
     animEasing: 'swing',
     animDuration: 600,
     gapY: 60,
-    threshold: 10
+    threshold: 10,
+    showHideNavAt: 60
   };
 
   var navList = '.anchor__nav__list';
@@ -149,6 +150,9 @@
       function navToggle() {
         var active = self.windowPos >= $(self.element.find(navItem)[0].hash)
           .offset().top - self.settings.gapY;
+        if (self.settings.showHideNavAt) {
+          active = self.windowPos >= self.settings.showHideNavAt;
+        }
         self.element.toggleClass('active', active);
 
         if (self.element.hasClass('scrollable')) {
