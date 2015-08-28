@@ -45,6 +45,7 @@
       this.windowHeight = $(window).height();
       this.docHeight = $(document).height();
       this.navWidth = this.element.width();
+      this.settings.showHideNavAt = $('.header').height();
     },
     onResize: function(event) {
       var self = event.data;
