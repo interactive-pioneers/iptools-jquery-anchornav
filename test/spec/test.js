@@ -7,8 +7,8 @@
       title: 'IPTAnchorNavigation',
       gapY: 0
     };
-
     var menu = null;
+    var pluginName = 'plugin_iptAnchorNavigation';
 
     describe('init', function() {
 
@@ -17,24 +17,20 @@
       });
 
       it('expected to construct object', function() {
-        return expect(menu)
-                .to.be.object;
+        return expect(menu).to.be.object;
       });
 
       it('expected gapY setting to be of numeric type', function() {
-        return expect(
-                menu.data('plugin_iptAnchorNavigation').settings.gapY)
-                .to.be.a('number');
+        return expect(menu.data(pluginName).settings.gapY).to.be.a('number');
       });
 
       it('expected title setting to be of string type', function() {
-        return expect(menu.data('plugin_iptAnchorNavigation').settings.title)
-                .to.be.a('string');
+        return expect(menu.data(pluginName).settings.title).to.be.a('string');
       });
 
       it('expected to set title to ' + config.title, function() {
-        return expect(menu.data('plugin_iptAnchorNavigation').settings.title)
-                .to.equal(config.title);
+        var title = menu.data(pluginName).settings.title;
+        return expect(title).to.equal(config.title);
       });
 
     });
@@ -46,9 +42,8 @@
       });
 
       it('expected to remove data', function() {
-        menu.data('plugin_iptAnchorNavigation').destroy();
-        return expect(menu.data('plugin_iptAnchorNavigation'))
-                .to.not.be.ok;
+        menu.data(pluginName).destroy();
+        return expect(menu.data(pluginName)).to.not.be.ok;
       });
 
     });
