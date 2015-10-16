@@ -16,6 +16,10 @@
         menu = $('.anchor__nav').iptAnchorNavigation(config);
       });
 
+      afterEach(function() {
+        menu.data(pluginName).destroy();
+      });
+
       it('expected to construct object', function() {
         return expect(menu).to.be.object;
       });
@@ -37,7 +41,7 @@
 
     describe('destroy', function() {
 
-      afterEach(function() {
+      beforeEach(function() {
         menu = $('.anchor__nav').iptAnchorNavigation(config);
       });
 
