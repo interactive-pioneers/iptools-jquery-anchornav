@@ -37,6 +37,25 @@
         return expect(title).to.equal(config.title);
       });
 
+      context('when no items can be found', function() {
+        var list = null;
+        before(function() {
+          list = $('.anchor__nav__list');
+          $('.anchor__nav__list').remove();
+        });
+
+        after(function() {
+          $('.anchor__nav').append(list);
+        });
+
+        it('expected to not to throw error', function() {
+          function test() {
+            $('.anchor__nav').iptAnchorNavigation(config);
+          }
+          return expect(test).to.not.throw.Error;
+        });
+      });
+
     });
 
     describe('destroy', function() {

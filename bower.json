@@ -2,7 +2,7 @@
   "name": "iptools-jquery-anchornav",
   "description": "jQuery anchor navigation",
   "main": "src/iptools-jquery-anhornav.js",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "license": "GPL-3.0",
   "ignore": [
     ".git*",

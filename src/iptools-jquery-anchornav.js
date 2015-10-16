@@ -25,10 +25,29 @@
     this._defaults = defaults;
     this._name = pluginName;
 
-    this.initialise();
+    if (this.initialisable()) {
+      this.initialise();
+    }
   }
 
   IPTAnchorNavigation.prototype = {
+
+    /**
+     *  Check if requirements are met.
+     *
+     *  TODO: implement (optional) strict mode that throws error
+     *  if plugin can not be initialised.
+     *  Possibly based on setting that is passed in.
+     */
+    initialisable: function() {
+      for (var i in selectors) {
+        if ($(selectors[i]).length === 0) {
+          return false;
+        }
+      }
+      return true;
+    },
+
     initialise: function() {
       this.addEvents();
       this.getDimensions();
@@ -150,8 +169,15 @@
       }
 
       function isActive() {
-        var firstItem = self.element.find(selectors.item)[0];
+        var items = self.element.find(selectors.item);
+        var firstItem = items[0];
+        if (!firstItem) {
+          return false;
+        }
         var topOffset = $(firstItem.hash).offset().top;
+        if (self.settings.showHideNavAt) {
+          return self.windowPos >= self.settings.showHideNavAt;
+        }
         return self.windowPos >= topOffset - self.settings.gapY;
       }
 
@@ -160,11 +186,7 @@
       }
 
       function navToggle() {
-        var active = isActive();
-        if (self.settings.showHideNavAt) {
-          active = self.windowPos >= self.settings.showHideNavAt;
-        }
-        self.element.toggleClass('active', active);
+        self.element.toggleClass('active', isActive());
 
         if (self.element.hasClass('scrollable')) {
           var ratio = self.windowPos / (self.docHeight - self.windowHeight);
