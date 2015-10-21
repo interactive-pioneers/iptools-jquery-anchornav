@@ -195,7 +195,7 @@
             .css({transform: 'translateX(' + self.posX + 'px)'});
 
           var lActive = self.index > 0;
-          var rActive = self.index < itemCount - 1;
+          var rActive = self.index < itemCount() - 1;
 
           self.lArr.toggleClass('active', lActive);
           self.rArr.toggleClass('active', rActive);

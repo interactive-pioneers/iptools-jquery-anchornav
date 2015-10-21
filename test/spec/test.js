@@ -46,6 +46,7 @@
 
         after(function() {
           $('.anchor__nav').append(list);
+          $('.anchor__nav').iptAnchorNavigation(config);
         });
 
         it('expected to not to throw error', function() {
