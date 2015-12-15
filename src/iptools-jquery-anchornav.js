@@ -152,8 +152,8 @@
       function highlight(i) {
         var divPos = $(this.hash).offset().top - self.settings.gapY;
         var divHeight = $(this.hash).height();
-        var active = self.windowPos >=
-          divPos && self.windowPos < (divPos + divHeight);
+        var active = self.windowPos >= (divPos - self.settings.gapY - self.windowHeight/2.5) &&
+                self.windowPos < (divPos + divHeight + self.settings.gapY - self.windowHeight/2.5);
 
         $(this).toggleClass('active', active);
 
