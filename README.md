@@ -4,7 +4,7 @@ jQuery anchor navigation.
 
 ## Features
 
-- Shows or hides the navigation bar depending on the scroll position. 
+- Shows or hides the navigation bar depending on the scroll position.
 - Scrolls smoothly to the targets when the anchor has been clicked.
 
 ## Requirements
@@ -15,6 +15,9 @@ jQuery anchor navigation.
 
 ```html
 <div>
+  <header class='header'>
+    ...
+  </header>
   <nav class='anchor__nav anchor__nav--dark'>
     <ul class='anchor__nav__list'><li class='anchor__nav__list__item'>
         <a class='anchor__nav__list__item__link' href='#a'>Übersicht</a>
@@ -59,7 +62,7 @@ jQuery anchor navigation.
 
 ## Options
 
-1. animEasing - time function of the animation 
+1. animEasing - time function of the animation
 2. animDuration - animation duration
 3. gapY - the distance in pixels from the top of the browser window
 
