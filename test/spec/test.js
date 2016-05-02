@@ -37,6 +37,15 @@
         return expect(title).to.equal(config.title);
       });
 
+      it('expect to trigger event', function() {
+        var emission = false;
+        var link = $('.anchor__nav__list__item__link').eq(0);
+        link.on('click.plugin_iptAnchorNavigation', function() {
+          emission = true;
+        }).trigger('click');
+        return expect(emission).to.be.ok;
+      });
+
       context('when no items can be found', function() {
         var list = null;
         before(function() {
