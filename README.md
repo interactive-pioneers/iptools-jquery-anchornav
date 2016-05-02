@@ -1,4 +1,4 @@
-# iptools-jquery-anchornav [![Build Status](http://img.shields.io/travis/interactive-pioneers/iptools-jquery-anchornav.svg)](https://travis-ci.org/interactive-pioneers/iptools-jquery-anchornav)
+# iptools-jquery-anchornav [![Build Status](http://img.shields.io/travis/interactive-pioneers/iptools-jquery-anchornav.svg)](https://travis-ci.org/interactive-pioneers/iptools-jquery-anchornav) [![Bower version](https://badge.fury.io/bo/iptools-jquery-anchornav.svg)](http://badge.fury.io/bo/iptools-jquery-anchornav)
 
 jQuery anchor navigation.
 
