@@ -1,8 +1,8 @@
 {
-  "name": "iptools-jquery-anhornav",
+  "name": "iptools-jquery-anchornav",
   "version": "0.1.9",
   "description": "jQuery anchor navigation",
-  "homepage": "https://github.com/interactive-pioneers/iptools-jquery-anhornav",
+  "homepage": "https://github.com/interactive-pioneers/iptools-jquery-anchornav",
   "author": {
     "name": "Interactive Pioneers GmbH",
     "email": "hello@interactive-pioneers.de"
@@ -17,7 +17,7 @@
       "email": "at@interactive-pioneers.de"
     }
   ],
-  "bugs": "https://github.com/interactive-pioneers/iptools-jquery-anhornav/issues",
+  "bugs": "https://github.com/interactive-pioneers/iptools-jquery-anchornav/issues",
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.4",
@@ -38,12 +38,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/interactive-pioneers/iptools-jquery-anhornav.git"
+    "url": "https://github.com/interactive-pioneers/iptools-jquery-anchornav.git"
   },
   "licenses": [
     {
       "type": "GPL",
-      "url": "https://github.com/interactive-pioneers/iptools-jquery-anhornav/blob/master/LICENSE"
+      "url": "https://github.com/interactive-pioneers/iptools-jquery-anchornav/blob/master/LICENSE"
     }
   ],
   "scripts": {
