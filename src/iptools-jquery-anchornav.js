@@ -59,6 +59,7 @@
     getDimensions: function() {
       var self = this;
       this.listWidth = 0;
+      this.element.find(selectors.list).css({transform: ''});
       this.element.find(selectors.item).each(function() {
         self.listWidth += $(this).outerWidth();
         $(this).data('offset', $(this).offset().left);
@@ -202,13 +203,12 @@
 
           if(activeItem.data('offset') > self.navWidth/2) {
             // Element has to be position in the center
-            //var diff = self.navWidth/2 - activeItem.data('offset') - activeItem.width()/2;
 
-
-            //console.log(activeItem.offset().left);
           }
 
           var diff = self.navWidth/2 - activeItem.data('offset') - activeItem.outerWidth()/2;
+
+          console.log(activeItem.data('offset'));
 
 
           self.posX = diff;
