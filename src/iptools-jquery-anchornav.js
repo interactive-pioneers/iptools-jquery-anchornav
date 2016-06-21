@@ -61,6 +61,7 @@
       this.listWidth = 0;
       this.element.find(selectors.item).each(function() {
         self.listWidth += $(this).outerWidth();
+        $(this).data('offset', $(this).offset().left);
       });
       this.windowHeight = $(window).height();
       this.docHeight = $(document).height();
@@ -191,8 +192,26 @@
         self.element.toggleClass('active', isActive());
 
         if (self.element.hasClass('scrollable')) {
+
+
+          /*
           var ratio = self.windowPos / (self.docHeight - self.windowHeight);
-          self.posX = (self.navWidth - self.listWidth) * ratio;
+          self.posX = (self.navWidth - self.listWidth) * ratio; */
+
+          var activeItem = $(self.element.find(selectors.item)[self.index]);
+
+          if(activeItem.data('offset') > self.navWidth/2) {
+            // Element has to be position in the center
+            //var diff = self.navWidth/2 - activeItem.data('offset') - activeItem.width()/2;
+
+
+            //console.log(activeItem.offset().left);
+          }
+
+          var diff = self.navWidth/2 - activeItem.data('offset') - activeItem.outerWidth()/2;
+
+
+          self.posX = diff;
           self.element.find(selectors.list)
             .css({transform: 'translateX(' + self.posX + 'px)'});
 
