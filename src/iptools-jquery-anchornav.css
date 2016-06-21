@@ -28,6 +28,8 @@
   list-style: none;
   text-align: center;
   white-space: nowrap;
+
+  transition: transform 0.5s;
 }
 
 .anchor__nav__list__item {
@@ -165,8 +167,6 @@
   height: 800px;
 }
 
-@media only screen and (max-width: 860px) {
-  .section {
-    height: 600px;
-  }
+#b {
+  height: 3500px;
 }
