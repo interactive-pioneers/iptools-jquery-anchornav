@@ -1,11 +1,11 @@
 
-.anchor__nav { 
+.anchor__nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
 
-  padding: 0 100px;
+  padding: 0 120px;
 
   opacity: 0;
   transition: .5s;
@@ -13,21 +13,21 @@
 }
 
 @media only screen and (max-width: 860px) {
-  .anchor__nav { 
-    padding: 0 50px;
+  .anchor__nav {
+    padding: 0 80px;
   }
 }
 
-.anchor__nav.active { 
+.anchor__nav.active {
   opacity: 1;
 }
 
-.anchor__nav__list {  
+.anchor__nav__list {
   margin: 0;
   padding: 0;
   list-style: none;
   text-align: center;
-  white-space: nowrap;  
+  white-space: nowrap;
 }
 
 .anchor__nav__list__item {
@@ -36,13 +36,13 @@
 
 .anchor__nav__list__item__link {
   display: inline-block;
-  padding: 20px;  
+  padding: 20px;
 }
 
 @media only screen and (max-width: 860px) {
   .anchor__nav__list__item__link {
-    padding: 15px; 
-    font-size: 12px;
+    padding: 15px;
+    font-size: 14px;
   }
 }
 
@@ -65,7 +65,7 @@
   }
 }
 
-.anchor__nav__top:before {  
+.anchor__nav__top:before {
   position: absolute;
   z-index: 10;
 
@@ -77,7 +77,7 @@
 }
 
 @media only screen and (max-width: 860px) {
-  .anchor__nav__top:before {  
+  .anchor__nav__top:before {
     font-size: 21px;
   }
 }
@@ -90,7 +90,7 @@
 }
 
 .scrollable:before,
-.scrollable:after {  
+.scrollable:after {
   position: absolute;
   z-index: 1;
   top: 0;
@@ -104,7 +104,7 @@
 
 @media only screen and (max-width: 860px) {
   .scrollable:before,
-  .scrollable:after {  
+  .scrollable:after {
     width: 50px;
   }
 }
@@ -139,7 +139,7 @@
   opacity: 1;
 }
 
-.scrollable__control--left {  
+.scrollable__control--left {
   left: 55px;
 }
 
@@ -151,7 +151,7 @@
   .scrollable__control {
     padding: 14px 0;
   }
-  .scrollable__control--left { 
+  .scrollable__control--left {
     left: 10px;
   }
 
@@ -162,7 +162,7 @@
 
 
 .section {
-  height: 800px;  
+  height: 800px;
 }
 
 @media only screen and (max-width: 860px) {
