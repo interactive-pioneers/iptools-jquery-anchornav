@@ -61,14 +61,18 @@
       this.listWidth = 0;
       this.element.find(selectors.item).each(function() {
         self.listWidth += $(this).outerWidth();
+        $(this).data('offset', $(this).offset().left);
+        $(this).data('width', $(this).outerWidth());
       });
       this.windowHeight = $(window).height();
       this.docHeight = $(document).height();
       this.navWidth = this.element.width();
+      this.navOuterWidth = this.element.outerWidth();
       this.settings.showHideNavAt = $(selectors.header).height();
     },
     onResize: function(event) {
       var self = event.data;
+      self.element.find(selectors.list).css({transform: ''});
       self.getDimensions();
 
       if (self.listWidth >= self.navWidth) {
@@ -191,8 +195,20 @@
         self.element.toggleClass('active', isActive());
 
         if (self.element.hasClass('scrollable')) {
-          var ratio = self.windowPos / (self.docHeight - self.windowHeight);
-          self.posX = (self.navWidth - self.listWidth) * ratio;
+          var activeItem = $(self.element.find(selectors.item)[self.index]);
+          var diff = self.navOuterWidth / 2 -
+                  activeItem.data('offset') - activeItem.data('width') / 2;
+
+          if (diff < 0) {
+            self.posX = diff;
+
+            if (-(diff - self.navWidth) > self.listWidth) {
+              self.posX = self.navWidth - self.listWidth;
+            }
+          } else {
+            self.posX = 0;
+          }
+
           self.element.find(selectors.list)
             .css({transform: 'translateX(' + self.posX + 'px)'});
 
