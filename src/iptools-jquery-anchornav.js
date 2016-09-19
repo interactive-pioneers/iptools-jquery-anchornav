@@ -154,6 +154,9 @@
       self.windowPos = $(window).scrollTop();
 
       function highlight(i) {
+        if (!this.hash) {
+          return;
+        }
         var divPos = $(this.hash).offset().top - self.settings.gapY;
         var divHeight = $(this.hash).height();
         var active = self.windowPos >=
