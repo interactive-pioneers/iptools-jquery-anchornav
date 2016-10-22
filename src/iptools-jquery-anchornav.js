@@ -56,6 +56,7 @@
       }
       this.triggerScroll();
     },
+
     getDimensions: function() {
       var self = this;
       this.listWidth = 0;
@@ -70,6 +71,7 @@
       this.navOuterWidth = this.element.outerWidth();
       this.settings.showHideNavAt = $(selectors.header).height();
     },
+
     onResize: function(event) {
       var self = event.data;
       self.element.find(selectors.list).css({transform: ''});
@@ -91,6 +93,7 @@
       }
       self.triggerScroll();
     },
+
     addScroller: function() {
       var self = this;
 
@@ -103,35 +106,46 @@
 
       this.element.append(self.lArr, self.rArr);
 
-      self.rArr.on('click', function() {
+      self.rArr.on(this.getNamespacedEvent('click'), function() {
         $(self.element.find(selectors.item)[self.index + 1]).trigger('click');
       });
 
-      self.lArr.on('click', function() {
+      self.lArr.on(this.getNamespacedEvent('click'), function() {
         $(self.element.find(selectors.item)[self.index - 1]).trigger('click');
       });
     },
+
     removeScroller: function() {
       this.element.removeClass('scrollable');
       this.element.find('.scrollable__control').remove();
       this.element.find(selectors.list).css({transform: 'translateX(0)'});
     },
+
     triggerScroll: function() {
       $(window).scrollTop($(window).scrollTop() + 1);
       $(window).scrollTop($(window).scrollTop() - 1);
     },
+
+    getNamespacedEvent: function(name) {
+      return name + '.' + pluginName;
+    },
+
     addEvents: function() {
       var self = this;
-      this.element.find(selectors.item).on('click', this, self.go);
-      this.element.find(selectors.top).on('click', this, self.go);
-      $(window).on('scroll', this, self.onScroll);
-      $(window).on('resize', this, self.onResize);
+      this.element.find(selectors.item)
+        .on(this.getNamespacedEvent('click'), this, self.go);
+      this.element.find(selectors.top)
+        .on(this.getNamespacedEvent('click'), this, self.go);
+      $(window).on(this.getNamespacedEvent('scroll'), this, self.onScroll);
+      $(window).on(this.getNamespacedEvent('resize'), this, self.onResize);
     },
+
     destroy: function() {
       this.removeScroller();
       this.element.off('.' + pluginName);
       this.element.removeData('plugin_' + pluginName);
     },
+
     go: function(event) {
       var self = event.data;
       var animation = {
@@ -149,6 +163,7 @@
       event.preventDefault();
       scrollTo(event.target.hash);
     },
+
     onScroll: function(event) {
       var self = event.data;
       self.windowPos = $(window).scrollTop();
