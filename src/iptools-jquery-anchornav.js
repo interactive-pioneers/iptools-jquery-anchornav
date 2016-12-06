@@ -9,14 +9,13 @@
     animDuration: 600,
     gapY: 60,
     threshold: 10,
-    showHideNavAt: 60
-  };
-
-  var selectors = {
-    list: '.anchor__nav__list',
-    item: '.anchor__nav__list__item__link',
-    top: '.anchor__nav__top',
-    header: '.header'
+    showHideNavAt: 60,
+    selectors: {
+      list: '.anchor__nav__list',
+      item: '.anchor__nav__list__item__link',
+      top: '.anchor__nav__top',
+      header: '.header'
+    }
   };
 
   function IPTAnchorNavigation(element, options) {
@@ -40,8 +39,8 @@
      *  Possibly based on setting that is passed in.
      */
     initialisable: function() {
-      for (var i in selectors) {
-        if ($(selectors[i]).length === 0) {
+      for (var i in this.settings.selectors) {
+        if ($(this.settings.selectors[i]).length === 0) {
           return false;
         }
       }
@@ -59,7 +58,7 @@
     getDimensions: function() {
       var self = this;
       this.listWidth = 0;
-      this.element.find(selectors.item).each(function() {
+      this.element.find(this.settings.selectors.item).each(function() {
         self.listWidth += $(this).outerWidth();
         $(this).data('offset', $(this).offset().left);
         $(this).data('width', $(this).outerWidth());
@@ -68,11 +67,11 @@
       this.docHeight = $(document).height();
       this.navWidth = this.element.width();
       this.navOuterWidth = this.element.outerWidth();
-      this.settings.showHideNavAt = $(selectors.header).height();
+      this.settings.showHideNavAt = $(this.settings.selectors.header).height();
     },
     onResize: function(event) {
       var self = event.data;
-      self.element.find(selectors.list).css({transform: ''});
+      self.element.find(self.settings.selectors.list).css({transform: ''});
       self.getDimensions();
 
       if (self.listWidth >= self.navWidth) {
@@ -81,7 +80,7 @@
         }
         if (self.navWidth >= self.posX + self.listWidth) {
           self.posX = self.navWidth - self.listWidth;
-          self.element.find(selectors.list)
+          self.element.find(self.settings.selectors.list)
             .css({transform: 'translateX(' + self.posX + 'px)'});
         }
       } else {
@@ -104,17 +103,20 @@
       this.element.append(self.lArr, self.rArr);
 
       self.rArr.on('click', function() {
-        $(self.element.find(selectors.item)[self.index + 1]).trigger('click');
+        $(self.element.find(self.settings.selectors.item)[self.index + 1])
+                .trigger('click');
       });
 
       self.lArr.on('click', function() {
-        $(self.element.find(selectors.item)[self.index - 1]).trigger('click');
+        $(self.element.find(self.settings.selectors.item)[self.index - 1])
+                .trigger('click');
       });
     },
     removeScroller: function() {
       this.element.removeClass('scrollable');
       this.element.find('.scrollable__control').remove();
-      this.element.find(selectors.list).css({transform: 'translateX(0)'});
+      this.element.find(this.settings.selectors.list)
+              .css({transform: 'translateX(0)'});
     },
     triggerScroll: function() {
       $(window).scrollTop($(window).scrollTop() + 1);
@@ -122,8 +124,10 @@
     },
     addEvents: function() {
       var self = this;
-      this.element.find(selectors.item).on('click', this, self.go);
-      this.element.find(selectors.top).on('click', this, self.go);
+      this.element.find(this.settings.selectors.item)
+              .on('click', this, self.go);
+      this.element.find(this.settings.selectors.top)
+              .on('click', this, self.go);
       $(window).on('scroll', this, self.onScroll);
       $(window).on('resize', this, self.onResize);
     },
@@ -168,8 +172,10 @@
 
         if (self.windowPos + self.windowHeight === self.docHeight) {
           if (!$(this[i]).hasClass('active')) {
-            self.element.find(selectors.item).removeClass('active');
-            $(self.element.find(selectors.item)[i]).addClass('active');
+            self.element.find(self.settings.selectors.item)
+                    .removeClass('active');
+            $(self.element.find(self.settings.selectors.item)[i])
+                    .addClass('active');
           }
         }
         if (active) {
@@ -178,7 +184,7 @@
       }
 
       function isActive() {
-        var items = self.element.find(selectors.item);
+        var items = self.element.find(self.settings.selectors.item);
         var firstItem = items[0];
         if (!firstItem) {
           return false;
@@ -191,14 +197,15 @@
       }
 
       function itemCount() {
-        return self.element.find(selectors.item).length;
+        return self.element.find(self.settings.selectors.item).length;
       }
 
       function navToggle() {
         self.element.toggleClass('active', isActive());
 
         if (self.element.hasClass('scrollable')) {
-          var activeItem = $(self.element.find(selectors.item)[self.index]);
+          var activeItem = $(self.element
+                  .find(self.settings.selectors.item)[self.index]);
           var diff = self.navOuterWidth / 2 -
                   activeItem.data('offset') - activeItem.data('width') / 2;
 
@@ -212,7 +219,7 @@
             self.posX = 0;
           }
 
-          self.element.find(selectors.list)
+          self.element.find(self.settings.selectors.list)
             .css({transform: 'translateX(' + self.posX + 'px)'});
 
           var lActive = self.index > 0;
@@ -225,7 +232,7 @@
         }
       }
 
-      self.element.find(selectors.item).each(highlight);
+      self.element.find(self.settings.selectors.item).each(highlight);
       navToggle();
     }
   };
