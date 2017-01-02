@@ -9,7 +9,7 @@
     animDuration: 600,
     gapY: 60,
     threshold: 10,
-    showHideNavAt: 60,
+    showHideNavAt: false,
     selectors: {
       list: '.anchor__nav__list',
       item: '.anchor__nav__list__item__link',
@@ -67,7 +67,10 @@
       this.docHeight = $(document).height();
       this.navWidth = this.element.width();
       this.navOuterWidth = this.element.outerWidth();
-      this.settings.showHideNavAt = $(this.settings.selectors.header).height();
+      if (!this.settings.showHideNavAt) {
+        this.settings.showHideNavAt =
+                $(this.settings.selectors.header).height();
+      }
     },
     onResize: function(event) {
       var self = event.data;
