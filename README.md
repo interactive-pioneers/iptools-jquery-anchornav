@@ -54,7 +54,8 @@ jQuery anchor navigation.
       $(".anchor__nav").iptAnchorNavigation({
         animEasing: 'swing',
         animDuration: 600,
-        gapY: 60
+        gapY: 60,
+        showHideNavAt: 200
       });
    });
 </script>
@@ -65,6 +66,7 @@ jQuery anchor navigation.
 1. animEasing - time function of the animation
 2. animDuration - animation duration
 3. gapY - the distance in pixels from the top of the browser window
+4. showHideNavAt - the switching point in pixels from the top of the browser window when the navigation is shown or hidden. If no setting is provided the header height is assigned as a value.
 
 ## Contributions
 

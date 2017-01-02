@@ -5,7 +5,8 @@
 
     var config = {
       title: 'IPTAnchorNavigation',
-      gapY: 0
+      gapY: 0,
+      showHideNavAt: 200
     };
     var menu = null;
     var pluginName = 'plugin_iptAnchorNavigation';
@@ -31,6 +32,13 @@
       it('expected title setting to be of string type', function() {
         return expect(menu.data(pluginName).settings.title).to.be.a('string');
       });
+
+      it('expected to set showHideNavAt setting to ' + config.showHideNavAt,
+        function() {
+          var showHideNavAt = menu.data(pluginName).settings.showHideNavAt;
+          return expect(showHideNavAt).to.equal(config.showHideNavAt);
+        }
+      );
 
       it('expected to set title to ' + config.title, function() {
         var title = menu.data(pluginName).settings.title;
