@@ -3,7 +3,7 @@
   "browser": true,
   "esnext": true,
   "bitwise": true,
-  "camelcase": false,
+  "camelcase": true,
   "curly": true,
   "eqeqeq": true,
   "immed": true,
@@ -19,5 +19,7 @@
   "trailing": true,
   "smarttabs": true,
   "jquery": true,
+  "mocha": true,
+  /* FIXME: fix and remove below rule */
   "validthis": true
 }
