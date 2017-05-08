@@ -15,6 +15,14 @@
     {
       "name": "Ain Tohvri",
       "email": "at@interactive-pioneers.de"
+    },
+    {
+      "name": "Georg Meyer",
+      "email": "gm@interactive-pioneers.de"
+    },
+    {
+      "name": "Jerome Dahdah",
+      "email": "jerome@dahdah.io"
     }
   ],
   "bugs": "https://github.com/interactive-pioneers/iptools-jquery-anchornav/issues",
