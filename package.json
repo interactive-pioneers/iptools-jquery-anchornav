@@ -56,5 +56,11 @@
     "layout",
     "menu",
     "navigation"
+  ],
+  "files": [
+    "*.md",
+    "LICENSE",
+    "src",
+    "dist"
   ]
 }
