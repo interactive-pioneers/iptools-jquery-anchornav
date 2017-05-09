@@ -1,8 +1,4 @@
 language: node_js
 node_js:
-  - 4.2
-before_install:
-  - npm cache clean
-  - npm install -g grunt-cli
-  - npm install -g bower
-  - bower install
+  - 6.2
+  - 7.5

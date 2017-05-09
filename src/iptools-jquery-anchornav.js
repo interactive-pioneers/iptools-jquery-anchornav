@@ -160,20 +160,33 @@
       var self = event.data;
       self.windowPos = $(window).scrollTop();
 
+      // FIXME: bad argument naming convention. Refactor.
+      // FIXME: anonymous function in anonymous function. Not done.
       function highlight(i) {
+        // FIXME: `this` should not be used in strict mode. Refactor.
+        // FMI: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
         if (!this.hash) {
           return;
         }
+        // FIXME: `this` should not be used in strict mode. Refactor.
+        // FMI: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
         var divPos = $(this.hash).offset().top - self.settings.gapY;
+        // FIXME: `this` should not be used in strict mode. Refactor.
+        // FMI: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
         var divHeight = $(this.hash).height();
         var active = self.windowPos >=
             (divPos - self.settings.gapY - self.windowHeight / 2.5) &&
             self.windowPos <
             (divPos + divHeight + self.settings.gapY - self.windowHeight / 2.5);
 
+        // FIXME: `this` should not be used in strict mode. Refactor.
+        // FMI: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
         $(this).toggleClass('active', active);
 
         if (self.windowPos + self.windowHeight === self.docHeight) {
+          // FIXME: `this` should not be used in strict mode. Refactor.
+          // FMI: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
+          // FIXME: no safety check.
           if (!$(this[i]).hasClass('active')) {
             self.element.find(self.settings.selectors.item)
                     .removeClass('active');
