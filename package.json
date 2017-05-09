@@ -27,7 +27,7 @@
   ],
   "bugs": "https://github.com/interactive-pioneers/iptools-jquery-anchornav/issues",
   "dependencies": {
-    "jquery": ">=1.11.3"
+    "jquery": ">=1.11.3 <4.0.0"
   },
   "devDependencies": {
     "grunt": "~1.0.1",
